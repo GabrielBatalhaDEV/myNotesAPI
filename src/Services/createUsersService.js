@@ -17,9 +17,9 @@ async function createUsersService({ name, email, password }) {
   }
 
   const hash = await bcrypt.hash(password, 8);
-  password = hash;
+  const hash_password = hash;
 
-  await UserModel.create({ name, email, password });
+  await UserModel.create({ name, email, password: hash_password });
 
   const User = await UserModel.findOne({ email });
 
